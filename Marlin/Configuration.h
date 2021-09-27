@@ -23,7 +23,8 @@
 
 #define CONFIG_EXAMPLES_DIR "Two Trees/BlueR/BlueR V3"
 
-#define BLUER_TMC2209 // Enable for the TMC2209 driver version
+#define BLUER_MIX_2225_2209 // Enable for the TMC2225(or 2208) drivers on X, Y and 2209 on Z, E0.
+// #define BLUER_TMC2209 // Enable for the TMC2209 driver version
 #define BLUER_BLTOUCH // Enable if you want to use BLTOUCH
 
 /**
@@ -840,6 +841,10 @@
   #define X_DRIVER_TYPE TMC2209_STANDALONE
   #define Y_DRIVER_TYPE TMC2209_STANDALONE
   #define Z_DRIVER_TYPE TMC2209_STANDALONE
+#elif ENABLED(BLUER_MIX_2225_2209)
+  #define X_DRIVER_TYPE TMC2208_STANDALONE
+  #define Y_DRIVER_TYPE TMC2208_STANDALONE
+  #define Z_DRIVER_TYPE TMC2209_STANDALONE
 #else
   #define X_DRIVER_TYPE TMC2208_STANDALONE
   #define Y_DRIVER_TYPE TMC2208_STANDALONE
@@ -850,7 +855,7 @@
 //#define Z2_DRIVER_TYPE A4988
 //#define Z3_DRIVER_TYPE A4988
 //#define Z4_DRIVER_TYPE A4988
-#if ENABLED(BLUER_TMC2209)
+#if ENABLED(BLUER_TMC2209) || ENABLED(BLUER_MIX_2225_2209)
 //#define I_DRIVER_TYPE  A4988
 //#define J_DRIVER_TYPE  A4988
 //#define K_DRIVER_TYPE  A4988
@@ -1315,7 +1320,7 @@
 // Invert the stepper direction. Change (or reverse the motor connector) if an axis goes the wrong way.
 #define INVERT_X_DIR false
 #define INVERT_Y_DIR false
-#if ENABLED(BLUER_TMC2209)
+#if ENABLED(BLUER_TMC2209) || ENABLED(BLUER_MIX_2225_2209)
   #define INVERT_Z_DIR false
 #else
   #define INVERT_Z_DIR true
@@ -1327,7 +1332,7 @@
 // @section extruder
 
 // For direct drive extruder v9 set to true, for geared extruder set to false.
-#if ENABLED(BLUER_TMC2209)
+#if ENABLED(BLUER_TMC2209) || ENABLED(BLUER_MIX_2225_2209)
   #define INVERT_E0_DIR false
 #else
   #define INVERT_E0_DIR true
